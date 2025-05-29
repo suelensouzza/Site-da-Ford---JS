@@ -25,3 +25,5 @@ function Enviar() {
     }
 
 }
+
+console.log(nome)
