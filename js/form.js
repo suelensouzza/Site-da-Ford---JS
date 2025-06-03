@@ -1,29 +1,36 @@
-
-//class contato
-
-class contato {
-    
-}
-
-function Post(form) {
-
-  let data = new contato(form.elements.namedItem("nome").value,
-            form.elements.namedItem("sobrenome").value, 
-            form.elements.namedItem("email").value, 
-            form.elements.namedItem("cpf").value, 
-            form.elements.namedItem("telefone").value, 
-            form.elements.namedItem("contato").value);
-  
-}
-
-function Enviar() {
-
-    var nome = document.getElementById("nomeid");
-
-    if (nome.value != "") {
-        alert('Obrigado sr(a) ' + nome.value + ' os seus dados foram encaminhados com sucesso');
+class Contato {
+    constructor(nome, sobrenome, email, cpf, telefone, tipoContato) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.tipoContato = tipoContato;
     }
-
 }
 
-console.log(nome)
+function Post(event, form) {
+    event.preventDefault();
+
+    const nome = form.elements.namedItem("nome").value;
+    const sobrenome = form.elements.namedItem("sobrenome").value;
+    const email = form.elements.namedItem("email").value;
+    const cpf = form.elements.namedItem("cpf").value;
+    const telefone = form.elements.namedItem("telefone").value;
+    const tipoContato = form.elements.namedItem("contato").value;
+
+    const dadosContato = new Contato(nome, sobrenome, email, cpf, telefone, tipoContato);
+
+    console.log("Dados do formulário:", dadosContato);
+
+    Enviar(dadosContato);
+    return false;
+}
+
+function Enviar(data) {
+    if (data.nome !== "") {
+        alert(`Obrigado sr(a) ${data.nome}, os seus dados foram encaminhados com sucesso.`);
+    } else {
+        alert("Por favor, preencha o campo Nome.");
+    }
+}
